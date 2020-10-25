@@ -7,6 +7,7 @@
 AR  ?= ar
 CC  ?= gcc
 CXX ?= g++
+PKG_CONFIG ?= pkg-config
 
 # --------------------------------------------------------------
 # Fallback to Linux if no other OS defined
@@ -100,8 +101,8 @@ endif
 # Set libs stuff
 
 ifeq ($(LINUX),true)
-DGL_FLAGS = $(shell pkg-config --cflags gl x11)
-DGL_LIBS  = $(shell pkg-config --libs gl x11)
+DGL_FLAGS = $(shell $(PKG_CONFIG) --cflags gl x11)
+DGL_LIBS  = $(shell $(PKG_CONFIG) --libs gl x11)
 endif
 
 ifeq ($(MACOS),true)
